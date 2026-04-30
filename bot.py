@@ -234,7 +234,7 @@ async def show_result(update: Update, user_id: int):
     del user_data[user_id]
 
 
-app = ApplicationBuilder().token(TOKEN).build()
+app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("start_test", start_test))
