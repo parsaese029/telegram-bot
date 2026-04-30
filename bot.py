@@ -234,10 +234,10 @@ async def show_result(update: Update, user_id: int):
     del user_data[user_id]
 
 
-async def main():
-    app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
+app = ApplicationBuilder().token(os.getenv("BOT_TOKEN")).build()
 
-    await app.bot.delete_webhook(drop_pending_updates=True)
+app.add_handler(CommandHandler("start", start))
+app.add_handler(CommandHandler("start_test", start_test))
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_answer))
 
-import asyncio
-asyncio.run(main())
+app.run_polling(drop_pending_updates=True)
